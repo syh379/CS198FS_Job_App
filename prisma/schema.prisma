@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -22,35 +22,13 @@ model JobListing {
   updatedAt        DateTime  @updatedAt
   expiresAt        DateTime?
   postedAt         DateTime?
-  employer         Employer? @relation("Company Name")
-  employee         Employee[] @relation("Employee Name")
 }
 
-
-model Employer {
-  id               String    @id @default(uuid())
-  name             String    @relation("Company Name")
-  username         String
-  email            String
-  password         String
-  yearFounded      Int
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  jobListings      JobListing[]
-}
-
-
-model Employee {
-  id               String    @id @default(uuid())
-  name             String    @relation("Employee Name")
-  username         String
-  email            String
-  password         String
-  Gender           String?
-  Age              Int?
-  skills           String[]
-  experiences      String[]
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  jobListings      JobListing[]
+model User {
+  id              String @id @default(cuid())
+  name            String @db.VarChar(255)
+  password        String @db.VarChar(255)
+  email           String @db.VarChar(255) @unique
+  isemployer      Boolean
+  address         String? @db.VarChar(255)
 }
