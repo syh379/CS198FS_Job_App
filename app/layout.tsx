@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TProvider } from "@/components/toast";
 import ContactBar from "@/components/contacbar/contactbar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="light">
-        <TProvider />
-        <Navbar />
-        {children}
-        <ContactBar />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className="light">
+          <TProvider />
+          <Navbar />
+          {children}
+          <ContactBar />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

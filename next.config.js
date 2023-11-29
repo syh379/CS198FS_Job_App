@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental:{
-        serverActions:true
-    }
-}
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ["images.clerk.com", "www.gravatar.com"],
+  },
+  experimental: {
+    serverActions: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
