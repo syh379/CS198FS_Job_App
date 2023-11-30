@@ -20,7 +20,7 @@ export default function Navbar() {
           </li>
         </ul>
         <div>
-          <UserButton userProfileUrl="/profile" />
+          <UserButton />
         </div>
       </div>
     </nav>

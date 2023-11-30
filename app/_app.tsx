@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   // }
 
   return (
-    <ClerkProvider frontendApi={process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}>
+    <ClerkProvider publishableKey="pk_test_c3RpcnJpbmctbW9uZ3JlbC0xMS5jbGVyay5hY2NvdW50cy5kZXYk">
       <html lang="en">
         <body className="light">
           {isPublicPage ? (
