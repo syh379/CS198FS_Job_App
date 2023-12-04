@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/clerk-react";
 
 export default function Navbar() {
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-600">
       <div className="flex justify-between items-center p-6 container">
         <Link href="/jobs" className="text-[25px] font-bold">
           Joblash
@@ -18,10 +18,13 @@ export default function Navbar() {
           <li>
             <Link href="/create-job">Create a job</Link>
           </li>
+          <li>
+            <UserButton
+              userProfileMode="navigation"
+              userProfileUrl="/viewprofile"
+            />
+          </li>
         </ul>
-        <div>
-          <UserButton />
-        </div>
       </div>
     </nav>
   );

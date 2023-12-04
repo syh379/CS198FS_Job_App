@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["images.clerk.com", "www.gravatar.com"],
+    domains: ["www.gravatar.com", "images.rawpixel.com"],
   },
   experimental: {
     serverActions: true,

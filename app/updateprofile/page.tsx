@@ -1,7 +1,8 @@
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUser } from "@clerk/nextjs";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   firstName: any;
@@ -21,28 +22,28 @@ const AdditionalUpdate = () => {
   } = useForm<FormValues>();
 
   const { isLoaded, isSignedIn, user } = useUser();
-  const onSubmit: SubmitHandler<FormValues> = (data) => router.push("/view");
-  //   const onSubmit = (data: {
-  //     firstName: any;
-  //     lastName: any;
-  //     customName: any;
-  //     customBio: any;
-  //   }) => {
-  //     try {
-  //         user?.update({
-  //           firstName: data.firstName,
-  //           lastName: data.lastName,
-  //           unsafeMetadata: {
-  //             customName: data.customName,
-  //             customBio: data.customBio,
-  //           },
-  //         });
 
-  //       router.push("/view");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const onSubmit = (data: {
+    firstName: any;
+    lastName: any;
+    customName: any;
+    customBio: any;
+  }) => {
+    try {
+      user?.update({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        unsafeMetadata: {
+          customName: data.customName,
+          customBio: data.customBio,
+        },
+      });
+
+      router.push("/viewprofile");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (!isLoaded || !isSignedIn) {
     return null;

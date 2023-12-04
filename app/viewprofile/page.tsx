@@ -1,4 +1,6 @@
+"use client";
 import { useUser } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 
@@ -13,14 +15,16 @@ const ViewProfile = () => {
   console.log(user);
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto m-10">
       <div className="flex">
         <div className="mx-4">
           <Image
-            src={user.profileImageUrl}
+            src={
+              "https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"
+            }
             width={250}
             height={250}
-            alt={user.fullName ? user.fullName : ""}
+            alt={user.fullName ? user.fullName : "User Profile Image"}
             className="rounded-lg"
           />
         </div>
@@ -60,13 +64,13 @@ const ViewProfile = () => {
                       ))}
                     </td>
                   </tr>
-                  {/* Unsafe Metadata Example */}
-                  {/* <tr>
+                  {/* Unsafe Metadata Example
+                  <tr>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       Custom Name
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.unsafeMetadata.customName}
+                      {user.unsafeMetadata.customName? user.unsafeMetadata.customName : "No Custom Name"}
                     </td>
                   </tr>
                   <tr>
@@ -82,9 +86,9 @@ const ViewProfile = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <Link href={"/additional"}>
+            <Link href={"/updateprofile"}>
               <button className="bg-purple-600 text-white font-bold py-2 px-4 mt-4 hover:bg-purple-800 transition-all">
-                Update Additionl Information
+                Update Additional Information
               </button>
             </Link>
           </div>
