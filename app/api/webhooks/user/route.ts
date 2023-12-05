@@ -27,13 +27,13 @@ async function handler(request: Request) {
     console.error((err as Error).message);
     return NextResponse.json({}, { status: 400 });
   }
-
+  let setUser = null;
   const eventType: EventType = evt.type;
   if (eventType === "user.created" || eventType === "user.updated") {
     const { id, ...attributes } = evt.data;
     console.log(id);
     console.log(attributes);
-    await prisma.user.upsert({
+    setUser = await prisma.user.upsert({
       where: { externalId: id as string },
       create: {
         externalId: id as string,
@@ -42,6 +42,8 @@ async function handler(request: Request) {
       update: { attributes },
     });
   }
+
+  return NextResponse.json({ data: setUser }, { status: 200 });
 }
 
 type EventType = "user.created" | "user.updated" | "*";
