@@ -98,8 +98,12 @@ export default function CreateJobClient() {
         />
 
         <input type="hidden" value={value} name="type" onChange={onChange} />
-        <DropDown value={value} setValue={setValue} jobType={jobType} />
-        <SubmitButton label="Create" />
+        <div style={{ marginTop: "20px" }}>
+          <DropDown value={value} setValue={setValue} jobType={jobType} />
+        </div>
+        <div style={{ marginTop: "20px" }}>
+          <SubmitButton label="Create" />
+        </div>
       </form>
     </div>
   );

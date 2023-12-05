@@ -6,7 +6,7 @@ const Description = () => {
   const router = useRouter();
   return (
     <section className="bg-white">
-      <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
+      <div className="m-10 max-w-[1240px] mx-auto grid md:grid-cols-2">
         <img src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202210/paying-job-sixteen_nine.jpg" />
         <div className="flex flex-col justify-center">
           <p className=" font-bold ">Search Jobs Smartly</p>

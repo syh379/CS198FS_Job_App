@@ -8,11 +8,11 @@ const Bottom = () => {
   return (
     <div className="bg-teal-100">
       <div
-        className="max-w-[1240px] mx-auto grid lg:grid-cols-3"
+        className="max-w-[1240px] mx-auto grid lg:grid-cols-2"
         style={{ padding: "70px" }}
       >
-        <div className="lg:col-span-2 my-4">
-          <h1 style={{ color: "black" }}>
+        <div className="lg:col-span-1 my-4">
+          <h1 style={{ color: "black", fontWeight: "bold" }}>
             Want latest job openings and updates from us?
           </h1>
           <p style={{ color: "black" }}>
@@ -30,7 +30,7 @@ const Bottom = () => {
               onClick={onClick}
               type="reset"
               value="Notify Me"
-              className="bg-teal-500 text-black rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3"
+              className="bg-teal-500 text-black rounded-md font-medium w-[200px] my-6 px-6 py-3"
             />
           </form>
         </div>

@@ -22,15 +22,13 @@ model JobListing {
   updatedAt        DateTime  @updatedAt
   expiresAt        DateTime?
   postedAt         DateTime?
-  applicants       User[]   
 }
 
+
 model User {
-  id              String @id @default(cuid())
-  name            String @db.VarChar(255)
-  password        String @db.VarChar(255)
-  email           String @db.VarChar(255) @unique
-  isemployer      Boolean
-  address         String? @db.VarChar(255)
-  jobsApplied       JobListing[]  
+  id         Int      @id @default(autoincrement())
+  externalId String   @unique
+  attributes Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

@@ -120,7 +120,7 @@ const AdditionalUpdate = () => {
 
         <button
           type="submit"
-          className="bg-purple-600 text-white font-bold py-2 px-4 mt-4 hover:bg-purple-800 transition-all"
+          className="bg-teal-500 text-black rounded-md font-medium py-2 px-4 mt-4 hover:bg-teal-700 transition-all"
         >
           Update
         </button>

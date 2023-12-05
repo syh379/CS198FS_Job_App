@@ -36,6 +36,11 @@ export default function ClientJob({ jobs }: ClientJob) {
     setState({ ...state, [event.target.name]: event.target.value });
   }
 
+  function onClick() {
+    setState(initialState);
+    setValue("");
+  }
+
   const filteredJobs = jobs.filter((item) => {
     const salaryCondition = Number(item.salary) >= Number(state.salary);
     const titleCondition =
@@ -57,48 +62,55 @@ export default function ClientJob({ jobs }: ClientJob) {
 
   return (
     <div>
-      <div className="grid grid-cols-3 py-12 gap-2 container">
-        <InputWithLabel
-          type="text"
-          label="Title"
-          id="Title"
-          placeholder="title..."
-          name="title"
-          onChange={onChange}
-        />
-        <InputWithLabel
-          type="text"
-          label="Location"
-          id="Location"
-          placeholder="Location..."
-          name="location"
-          onChange={onChange}
-        />
+      <form>
+        <div className="grid grid-cols-3 py-12 gap-2 container">
+          <InputWithLabel
+            type="text"
+            label="Title"
+            id="Title"
+            placeholder="title..."
+            name="title"
+            onChange={onChange}
+          />
+          <InputWithLabel
+            type="text"
+            label="Location"
+            id="Location"
+            placeholder="Location..."
+            name="location"
+            onChange={onChange}
+          />
 
-        <InputWithLabel
-          type="number"
-          label="Salary"
-          id="Salary"
-          placeholder="minimum salary..."
-          onChange={onChange}
-          value={state.salary}
-          name="salary"
-        />
-        <InputWithLabel
-          type="text"
-          label="Description"
-          id="Description"
-          placeholder="Job Description..."
-          onChange={onChange}
-          value={state.description}
-          name="description"
-        />
+          <InputWithLabel
+            type="number"
+            label="Salary"
+            id="Salary"
+            placeholder="minimum salary..."
+            onChange={onChange}
+            value={state.salary}
+            name="salary"
+          />
+          <InputWithLabel
+            type="text"
+            label="Description"
+            id="Description"
+            placeholder="Job Description..."
+            onChange={onChange}
+            value={state.description}
+            name="description"
+          />
 
-        <div>
-          <DropDown value={value} setValue={setValue} jobType={jobType} />
+          <div style={{ marginTop: "20px" }}>
+            <DropDown value={value} setValue={setValue} jobType={jobType} />
+          </div>
+          <input
+            type="reset"
+            onClick={onClick}
+            value="Reset Filter"
+            className="bg-teal-500 text-black rounded-md font-medium w-[150px] h-[50px] my-2 hover:bg-teal-700"
+          />
         </div>
-      </div>
-
+      </form>
       <div className="grid grid-cols-3 py-8 gap-y-8 container">
         {filteredJobs.map((item) => (
           <Card

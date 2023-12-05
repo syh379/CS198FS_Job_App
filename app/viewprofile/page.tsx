@@ -87,7 +87,7 @@ const ViewProfile = () => {
           </div>
           <div className="flex justify-center">
             <Link href={"/updateprofile"}>
-              <button className="bg-purple-600 text-white font-bold py-2 px-4 mt-4 hover:bg-purple-800 transition-all">
+              <button className="bg-teal-500 text-black rounded-md font-medium py-2 px-4 mt-4 hover:bg-teal-700 transition-all">
                 Update Additional Information
               </button>
             </Link>
