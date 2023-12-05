@@ -42,6 +42,7 @@ async function handler(request: Request) {
       update: { attributes },
     });
   }
+  
 
   return NextResponse.json({}, { status: 200 });
 }

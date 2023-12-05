@@ -1,6 +1,6 @@
 "use client";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import InputWithLabel from "../jobs/input-job";
+import InputWithLabel from "./input-job";
 import { DropDown } from "@/components/dropdown";
 import SubmitButton from "@/components/submit-button";
 import createJobs from "@/actions/create-job";

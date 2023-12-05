@@ -22,19 +22,17 @@ const AdditionalUpdate = () => {
     try {
       console.log("Before user update", user);
       const updateUserResult = user.update({
-        // firstName: data.firstName,
-        // lastName: data.lastName,
-        // unsafeMetadata: {
-        //   customName: data.customName,
-        //   customBio: data.customBio,
-        // },
-        firstName: "hello",
-        lastName: "world",
+        firstName: data.firstName,
+        lastName: data.lastName,
+        unsafeMetadata: {
+          customName: data.customName,
+          customBio: data.customBio,
+        },
       });
       console.log("After user update", updateUserResult);
       router.push("/viewprofile");
     } catch (error) {
-      console.log(error);
+      console.log("very interesting error", error);
     }
   };
 

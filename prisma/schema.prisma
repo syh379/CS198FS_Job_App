@@ -11,24 +11,36 @@ datasource db {
 }
 
 model JobListing {
-  id               String    @id @default(uuid())
-  title            String
-  companyName      String
-  location         String
-  salary           String
-  type             String
-  description      String    @default("Default description")
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  expiresAt        DateTime?
-  postedAt         DateTime?
+  id          String    @id @default(uuid())
+  title       String
+  companyName String
+  location    String
+  salary      String
+  type        String
+  description String    @default("Default description")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  expiresAt   DateTime?
+  postedAt    DateTime?
 }
 
-
 model User {
-  id         Int      @id @default(autoincrement())
-  externalId String   @unique
+  id         Int       @id @default(autoincrement())
+  externalId String    @unique
   attributes Json
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  employee   Employee?
+}
+
+model Employee {
+  id          Int     @id @default(autoincrement())
+  clerkUserId String  @unique
+  clerkUser   User    @relation(fields: [clerkUserId], references: [externalId])
+  gender      String?
+  firstName   String?
+  lastName    String?
+  email       String? @unique
+  birthDate   String?
+  phoneNumber String?
 }

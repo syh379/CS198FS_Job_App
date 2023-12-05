@@ -2,7 +2,7 @@
 
 import { JobListing } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
-import InputWithLabel from "./input-job";
+import InputWithLabel from "../create-job/input-job";
 import { DropDown } from "@/components/dropdown";
 import Card from "./card";
 
