@@ -43,7 +43,7 @@ async function handler(request: Request) {
     });
   }
 
-  return NextResponse.json({ data: setUser }, { status: 200 });
+  return NextResponse.json({}, { status: 200 });
 }
 
 type EventType = "user.created" | "user.updated" | "*";
