@@ -22,6 +22,7 @@ model JobListing {
   updatedAt        DateTime  @updatedAt
   expiresAt        DateTime?
   postedAt         DateTime?
+  applicants       User[]   
 }
 
 model User {
@@ -31,5 +32,5 @@ model User {
   email           String @db.VarChar(255) @unique
   isemployer      Boolean
   address         String? @db.VarChar(255)
-  // jobsApplied    JobListing[] @relation("JobListing")
+  jobsApplied       JobListing[]  
 }

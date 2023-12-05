@@ -1,6 +1,15 @@
 import { redirect } from "next/navigation";
+import Description from "./Description";
+import Top from "./Top";
+import Bottom from "./Bottom";
+import Navbar from "@/components/navbar/navbar";
 
 export default function Home() {
-  redirect("/jobs");
-  // return <div>Home</div>;
+  return (
+    <>
+      <Top />
+      <Description />
+      <Bottom />
+    </>
+  );
 }
