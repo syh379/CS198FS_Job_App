@@ -99,7 +99,7 @@ export default function ClientJob({ jobs }: ClientJob) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 py-8 gap-y-8 container">
+      <div className="grid grid-cols-3 py-8 gap-y-8 container">
         {filteredJobs.map((item) => (
           <Card
             id={item.id}

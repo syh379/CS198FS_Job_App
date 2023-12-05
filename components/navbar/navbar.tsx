@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className="bg-gray-600">
       <div className="flex justify-between items-center p-6 container">
         <Link href="/jobs" className="text-[25px] font-bold">
-          Joblash
+          WHaLes Jobs
         </Link>
 
         <ul className="flex gap-4 text-[1.2rem] text-md">

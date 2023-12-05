@@ -31,4 +31,5 @@ model User {
   email           String @db.VarChar(255) @unique
   isemployer      Boolean
   address         String? @db.VarChar(255)
+  // jobsApplied    JobListing[] @relation("JobListing")
 }

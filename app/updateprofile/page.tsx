@@ -1,15 +1,8 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useUser } from "@clerk/nextjs";
 
 import { useRouter } from "next/navigation";
-
-type FormValues = {
-  firstName: any;
-  lastName: any;
-  customName: any;
-  customBio: any;
-};
 
 const AdditionalUpdate = () => {
   const router = useRouter();
@@ -17,37 +10,33 @@ const AdditionalUpdate = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm();
 
   const { isLoaded, isSignedIn, user } = useUser();
+  if (!isLoaded || !isSignedIn || !user) {
+    return null;
+  }
 
-  const onSubmit = (data: {
-    firstName: any;
-    lastName: any;
-    customName: any;
-    customBio: any;
-  }) => {
+  const onSubmit = (data: any) => {
     try {
-      user?.update({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        unsafeMetadata: {
-          customName: data.customName,
-          customBio: data.customBio,
-        },
+      console.log("Before user update", user);
+      const updateUserResult = user.update({
+        // firstName: data.firstName,
+        // lastName: data.lastName,
+        // unsafeMetadata: {
+        //   customName: data.customName,
+        //   customBio: data.customBio,
+        // },
+        firstName: "hello",
+        lastName: "world",
       });
-
+      console.log("After user update", updateUserResult);
       router.push("/viewprofile");
     } catch (error) {
       console.log(error);
     }
   };
-
-  if (!isLoaded || !isSignedIn) {
-    return null;
-  }
 
   return (
     <div className="mx-10">
@@ -61,7 +50,7 @@ const AdditionalUpdate = () => {
             First Name
           </label>
           <input
-            defaultValue={user.firstName ? user.firstName : "name"}
+            defaultValue={user.firstName ? user.firstName : ""}
             {...register("firstName", {
               required: true,
             })}
@@ -79,7 +68,7 @@ const AdditionalUpdate = () => {
             Last Name
           </label>
           <input
-            defaultValue={user.lastName ? user.lastName : "name"}
+            defaultValue={user.lastName ? user.lastName : ""}
             {...register("lastName", {
               required: true,
             })}
@@ -97,15 +86,16 @@ const AdditionalUpdate = () => {
             Custom Name
           </label>
           <input
-            defaultValue={"custom name"}
+            defaultValue={
+              user.unsafeMetadata.customName
+                ? (user.unsafeMetadata.customName as string)
+                : ""
+            }
             {...register("customName", {
-              required: true,
+              required: false,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
-          {errors.customName && (
-            <span className="text-sm text-red-600">This field is required</span>
-          )}
         </div>
         <div className="mt-4">
           <label
@@ -116,20 +106,21 @@ const AdditionalUpdate = () => {
           </label>
           <textarea
             rows={6}
-            defaultValue={"custom bio"}
+            defaultValue={
+              user.unsafeMetadata.customBio
+                ? (user.unsafeMetadata.customBio as string)
+                : ""
+            }
             {...register("customBio", {
-              required: true,
+              required: false,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ></textarea>
-          {errors.customBio && (
-            <span className="text-sm text-red-600">This field is required</span>
-          )}
         </div>
 
         <button
           type="submit"
-          className="bg-purple-500 px-8 py-2 my-4 text-lg font-semibold text-white hover:bg-purple-700 transition-all"
+          className="bg-purple-600 text-white font-bold py-2 px-4 mt-4 hover:bg-purple-800 transition-all"
         >
           Update
         </button>

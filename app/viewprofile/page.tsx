@@ -64,13 +64,13 @@ const ViewProfile = () => {
                       ))}
                     </td>
                   </tr>
-                  {/* Unsafe Metadata Example
+                  Additional MetaData
                   <tr>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       Custom Name
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.unsafeMetadata.customName? user.unsafeMetadata.customName : "No Custom Name"}
+                      {user.unsafeMetadata.customName as string}
                     </td>
                   </tr>
                   <tr>
@@ -78,9 +78,9 @@ const ViewProfile = () => {
                       Custom Bio
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.unsafeMetadata.customBio}
+                      {user.unsafeMetadata.customBio as string}
                     </td>
-                  </tr> */}
+                  </tr>
                 </tbody>
               </table>
             </div>

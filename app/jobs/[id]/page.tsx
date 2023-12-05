@@ -33,7 +33,7 @@ export default async function page({ params }: { params: { id: string } }) {
           <div className="flex items-center gap-4 py-4">
             <Link
               href="/jobs"
-              className="py-2 px-5 bg-neutral-600 rounded-full"
+              className="py-2 px-5 bg-neutral-400 rounded-full"
             >
               Back
             </Link>

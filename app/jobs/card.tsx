@@ -30,7 +30,7 @@ export default function Card({
   const router = useRouter();
 
   return (
-    <div className="w-[600px] min-h-[240px] shadow-lg shadow-slate-700 flex flex-col p-4 border-4">
+    <div className="w-[400px] min-h-[300px] shadow-md flex flex-col p-4 border-2">
       <div>
         <h1 className="text-[2rem]">{title}</h1>
         <div className="flex items-center gap-4 text-neutral-500">
@@ -40,8 +40,8 @@ export default function Card({
       </div>
 
       <div className="my-5 flex items-center gap-5">
-        <span className=" rounded-2xl bg-neutral-500 p-2">$ {salary}</span>
-        <span className=" rounded-2xl bg-neutral-500 p-2 px-4">{type}</span>
+        <span className=" rounded-2xl bg-neutral-300 p-2">$ {salary}</span>
+        <span className=" rounded-2xl bg-neutral-300 p-2 px-4">{type}</span>
       </div>
 
       <p className="text-lg">{description}</p>
