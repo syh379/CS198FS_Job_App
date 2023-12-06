@@ -1,10 +1,22 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useUser } from "@clerk/nextjs";
-
+import { useUser, clerkClient } from "@clerk/nextjs";
+import {ViewProfile} from "../profile/viewprofile";
 import { useRouter } from "next/navigation";
+import { prisma } from "@/lib/db";
 
-const AdditionalUpdate = () => {
+
+// type userInfo = { 
+//   firstname: string; lastname: string; customname: string; custombio: string;
+// };
+
+// Import the generated Prisma Client
+import { PrismaClient } from '@prisma/client';
+
+// Instantiate Prisma Client
+
+
+const UpdateProfile = () => {
   const router = useRouter();
 
   const {
@@ -18,27 +30,30 @@ const AdditionalUpdate = () => {
     return null;
   }
 
-  const onSubmit = (data: any) => {
+
+
+  async function onSubmit(data: any) {
     try {
-      console.log("Before user update", user);
-      const updateUserResult = user.update({
-        firstName: data.firstName,
-        lastName: data.lastName,
+      console.log(user!.id);
+      const updateUserResult = await user?.update({
+        firstName: "world",
+        lastName: "hello",
         unsafeMetadata: {
-          customName: data.customName,
-          customBio: data.customBio,
+          customName: data.customname? data.customname as string: "",
+          customBio: data.custombio? data.custombio as string: "",
         },
       });
       console.log("After user update", updateUserResult);
-      router.push("/viewprofile");
+      router.push("/profile");
     } catch (error) {
-      console.log("very interesting error", error);
+      router.push("/profile");
+      console.log("error", error);
     }
   };
 
   return (
-    <div className="mx-10">
-      <h1 className="text-2xl font-bold py-4">Update Additional Information</h1>
+    <div className="mx-10 my-10">
+      <h1 className="text-2xl font-bold py-4">Update Your Profile</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label
@@ -49,12 +64,12 @@ const AdditionalUpdate = () => {
           </label>
           <input
             defaultValue={user.firstName ? user.firstName : ""}
-            {...register("firstName", {
+            {...register("firstname", {
               required: true,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
-          {errors.firstName && (
+          {errors.firstname && (
             <span className="text-sm text-red-600">This field is required</span>
           )}
         </div>
@@ -67,12 +82,12 @@ const AdditionalUpdate = () => {
           </label>
           <input
             defaultValue={user.lastName ? user.lastName : ""}
-            {...register("lastName", {
+            {...register("lastname", {
               required: true,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
-          {errors.lastName && (
+          {errors.lastname && (
             <span className="text-sm text-red-600">This field is required</span>
           )}
         </div>
@@ -89,7 +104,7 @@ const AdditionalUpdate = () => {
                 ? (user.unsafeMetadata.customName as string)
                 : ""
             }
-            {...register("customName", {
+            {...register("customname", {
               required: false,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -109,7 +124,7 @@ const AdditionalUpdate = () => {
                 ? (user.unsafeMetadata.customBio as string)
                 : ""
             }
-            {...register("customBio", {
+            {...register("custombio", {
               required: false,
             })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -127,4 +142,4 @@ const AdditionalUpdate = () => {
   );
 };
 
-export default AdditionalUpdate;
+export default UpdateProfile;

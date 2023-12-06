@@ -1,13 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";
+import { currentUser } from "@clerk/nextjs";
+import {ApplyButton} from "@/components/applyButton";
 
-export default async function page({ params }: { params: { id: string } }) {
+
+export default async function JobPage({ params }: { params: { id: string } }) {
   const job = await prisma.jobListing.findUnique({
     where: {
       id: params.id,
     },
   });
+
 
   return (
     <div>
@@ -37,13 +41,7 @@ export default async function page({ params }: { params: { id: string } }) {
             >
               Back
             </Link>
-            <Link
-              href="https://www.google.com"
-              target="_blank"
-              className="py-2 px-5 bg-neutral-200 text-zinc-800 rounded-full"
-            >
-              Apply
-            </Link>
+            <ApplyButton />
           </div>
         </div>
       </div>

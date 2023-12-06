@@ -22,6 +22,8 @@ model JobListing {
   updatedAt   DateTime  @updatedAt
   expiresAt   DateTime?
   postedAt    DateTime?
+  isApplied   Boolean   @default(false)
+  // applicants  User[]
 }
 
 model User {
@@ -31,6 +33,7 @@ model User {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   employee   Employee?
+  // jobsApplied JobListing[]
 }
 
 model Employee {
@@ -38,9 +41,11 @@ model Employee {
   clerkUserId String  @unique
   clerkUser   User    @relation(fields: [clerkUserId], references: [externalId])
   gender      String?
-  firstName   String?
-  lastName    String?
+  firstName   String
+  lastName    String
   email       String? @unique
   birthDate   String?
   phoneNumber String?
+
+  @@unique([firstName, lastName])
 }
