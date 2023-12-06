@@ -1,16 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";
+import { currentUser } from "@clerk/nextjs";
+import {ApplyButton} from "@/components/applyButton";
 
-export default async function page({ params }: { params: { id: string } }) {
+
+export default async function JobPage({ params }: { params: { id: string } }) {
   const job = await prisma.jobListing.findUnique({
     where: {
       id: params.id,
     },
   });
 
+
   return (
-    <div>
+    <div className="w-4/5">
       <div className="container p-12 space-y-7">
         <h1 className="text-[4rem]">{job?.title}</h1>
 
@@ -28,7 +32,7 @@ export default async function page({ params }: { params: { id: string } }) {
             Please apply using apply button and if you want to go listings, use
             the back button
           </p>
-          <p className=" font-normal">{job?.description}</p>
+          <p className="py-6 font-normal">{job?.description}</p>
 
           <div className="flex items-center gap-4 py-4">
             <Link
@@ -37,13 +41,7 @@ export default async function page({ params }: { params: { id: string } }) {
             >
               Back
             </Link>
-            <Link
-              href="https://www.google.com"
-              target="_blank"
-              className="py-2 px-5 bg-neutral-200 text-zinc-800 rounded-full"
-            >
-              Apply
-            </Link>
+            <ApplyButton />
           </div>
         </div>
       </div>

@@ -44,11 +44,11 @@ export default function ClientJob({ jobs }: ClientJob) {
   const filteredJobs = jobs.filter((item) => {
     const salaryCondition = Number(item.salary) >= Number(state.salary);
     const titleCondition =
-      state.title === "" || item.title.includes(state.title);
+      state.title === "" || item.title.toLowerCase().includes(state.title.toLowerCase());
     const location =
-      state.location === "" || item.location.includes(state.location);
+      state.location === "" || item.location.toLowerCase().includes(state.location.toLowerCase());
     const descriptionCondition =
-      state.description === "" || item.description.includes(state.description);
+      state.description === "" || item.description.toLowerCase().includes(state.description.toLowerCase());
     const typeCondition = value === "" || item.type === value;
 
     return (
@@ -68,7 +68,7 @@ export default function ClientJob({ jobs }: ClientJob) {
             type="text"
             label="Title"
             id="Title"
-            placeholder="title..."
+            placeholder="Title..."
             name="title"
             onChange={onChange}
           />
@@ -85,7 +85,7 @@ export default function ClientJob({ jobs }: ClientJob) {
             type="number"
             label="Salary"
             id="Salary"
-            placeholder="minimum salary..."
+            placeholder="Minimum Salary..."
             onChange={onChange}
             value={state.salary}
             name="salary"

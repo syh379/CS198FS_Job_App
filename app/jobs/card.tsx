@@ -30,7 +30,7 @@ export default function Card({
   const router = useRouter();
 
   return (
-    <div className="w-[400px] min-h-[300px] shadow-md flex flex-col p-4 border-2">
+    <div className="w-[400px] min-h-[300px] p-6 shadow-md bg-gray-100 flex flex-col p-4 border-2 rounded-lg">
       <div>
         <h1 className="text-[2rem]">{title}</h1>
         <div className="flex items-center gap-4 text-neutral-500">

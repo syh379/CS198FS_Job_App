@@ -4,12 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TProvider } from "@/components/toast";
 import ContactBar from "@/components/contacbar/contactbar";
-import {
-  ClerkProvider,
-  RedirectToSignIn,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { useUser } from "@clerk/clerk-react";
 
 const inter = Inter({ subsets: ["latin"] });

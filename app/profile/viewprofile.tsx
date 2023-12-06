@@ -1,18 +1,18 @@
-"use client";
-import { useUser } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
 
+
+import { useEffect, useState } from "react";
+import { PrismaClient, Employee } from "@prisma/client";
+import { prisma } from "@/lib/db";
 import Image from "next/image";
 
 import Link from "next/link";
 
-const ViewProfile = () => {
-  const { isLoaded, isSignedIn, user } = useUser();
-  if (!isLoaded || !isSignedIn) {
-    return null;
-  }
+type userInfo = { 
+  firstname: string; lastname: string; email: string; customname: string; custombio: string;
+};
 
-  
+export const ViewProfile: React.FC<userInfo>  = ({firstname, lastname, email, customname, custombio}) => {
+
 
   return (
     <div className="container mx-auto m-10">
@@ -20,11 +20,11 @@ const ViewProfile = () => {
         <div className="mx-4">
           <Image
             src={
-              "https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"
+              "https://i.pinimg.com/564x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg"
             }
             width={250}
             height={250}
-            alt={user.fullName ? user.fullName : "User Profile Image"}
+            alt={"User Profile Image"}
             className="rounded-lg"
           />
         </div>
@@ -39,7 +39,7 @@ const ViewProfile = () => {
                       First Name
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 whitespace-no-wrap">
-                      {user.firstName}
+                      {firstname}
                     </td>
                   </tr>
                   {/* Last Name */}
@@ -48,37 +48,32 @@ const ViewProfile = () => {
                       Last Name
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.lastName}
+                      {lastname}
                     </td>
                   </tr>
                   {/* Emails */}
                   <tr>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      Emails
+                      Email
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.emailAddresses.map((email) => (
-                        <div key={email.emailAddress}>
-                          {email.emailAddress},{" "}
-                        </div>
-                      ))}
-                    </td>
-                  </tr>
-                  Additional MetaData
-                  <tr>
-                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      Custom Name
-                    </td>
-                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.unsafeMetadata.customName as string}
+                      {email} 
                     </td>
                   </tr>
                   <tr>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      Custom Bio
+                      Skills & Experiences
                     </td>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {user.unsafeMetadata.customBio as string}
+                      {customname}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Personal Bio
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      {custombio}
                     </td>
                   </tr>
                 </tbody>
@@ -86,11 +81,11 @@ const ViewProfile = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <Link href={"/updateprofile"}>
+            <Link href="/updateprofile">
               <button className="bg-teal-500 text-black rounded-md font-medium py-2 px-4 mt-4 hover:bg-teal-700 transition-all">
                 Update Additional Information
               </button>
-            </Link>
+              </Link>
           </div>
         </div>
       </div>
@@ -98,4 +93,3 @@ const ViewProfile = () => {
   );
 };
 
-export default ViewProfile;

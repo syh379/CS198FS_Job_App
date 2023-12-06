@@ -47,12 +47,12 @@ export default function CreateJobClient() {
           toast.success("Created Successfully");
           redirect("/jobs");
         }}
-        className="container mx-auto grid gap-8 grid-cols-4"
+        className="container mx-auto grid gap-6 justify-items-center"
       >
         <InputWithLabel
           type="text"
           id="title"
-          placeholder="title"
+          placeholder="Title"
           label="title"
           value={state.title}
           onChange={onChange}
@@ -63,7 +63,7 @@ export default function CreateJobClient() {
           type="text"
           value={state.companyName}
           id="companyName"
-          placeholder="companyName"
+          placeholder="CompanyName"
           label="companyName"
           name="companyName"
           onChange={onChange}
@@ -72,7 +72,7 @@ export default function CreateJobClient() {
         <InputWithLabel
           type="text"
           id="location"
-          placeholder="location"
+          placeholder="Location"
           label="location"
           value={state.location}
           onChange={onChange}
@@ -82,7 +82,7 @@ export default function CreateJobClient() {
           type="text"
           value={state.salary}
           id="salary"
-          placeholder="salary"
+          placeholder="Salary"
           label="salary"
           onChange={onChange}
           name="salary"
@@ -91,7 +91,7 @@ export default function CreateJobClient() {
           type="text"
           value={state.description}
           id="description"
-          placeholder="description"
+          placeholder="Description"
           label="description"
           onChange={onChange}
           name="description"

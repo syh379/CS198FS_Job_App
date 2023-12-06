@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["www.gravatar.com", "images.rawpixel.com"],
+    domains: ["www.gravatar.com", "images.rawpixel.com", "i.pinimg.com"],
   },
   experimental: {
     serverActions: true,

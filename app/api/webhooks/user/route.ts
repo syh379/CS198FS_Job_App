@@ -4,10 +4,13 @@ import { IncomingHttpHeaders } from "http";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook, WebhookRequiredHeaders } from "svix";
+import {Employee} from "@prisma/client";
+import { currentUser } from '@clerk/nextjs';
 
 const webhookSecret = process.env.WEBHOOK_SECRET || "";
 
 async function handler(request: Request) {
+
   const payload = await request.json();
   const headersList = headers();
   const heads = {
@@ -27,13 +30,13 @@ async function handler(request: Request) {
     console.error((err as Error).message);
     return NextResponse.json({}, { status: 400 });
   }
-  let setUser = null;
+
   const eventType: EventType = evt.type;
   if (eventType === "user.created" || eventType === "user.updated") {
     const { id, ...attributes } = evt.data;
     console.log(id);
     console.log(attributes);
-    setUser = await prisma.user.upsert({
+    const setUser = await prisma.user.upsert({
       where: { externalId: id as string },
       create: {
         externalId: id as string,
@@ -41,6 +44,24 @@ async function handler(request: Request) {
       },
       update: { attributes },
     });
+
+
+    
+    if (setUser) {
+      const setEmployee = await prisma.employee.upsert({
+        where: { clerkUserId: setUser.externalId },
+        create: {
+          clerkUserId: setUser.externalId,
+          firstName: attributes.first_name as string,
+          lastName: attributes.last_name as string,
+        },
+        update: {
+          firstName: attributes.first_name as string,
+          lastName: attributes.last_name as string,
+        },
+      });
+      console.log(setEmployee);
+    }
   }
   
 

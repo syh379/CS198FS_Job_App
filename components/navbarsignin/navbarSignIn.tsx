@@ -22,7 +22,7 @@ export default function NavbarSignIn() {
           <li>
             <UserButton
               userProfileMode="navigation"
-              userProfileUrl="/viewprofile"
+              userProfileUrl="/profile"
             />
           </li>
         </ul>
