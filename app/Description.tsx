@@ -25,7 +25,7 @@ const Description = () => {
             onClick={() => router.push("/profile")}
             className="bg-teal-500 rounded-md font-medium my-6 mx-auto md:mx-0 py-3"
           >
-            Check available jobs here!
+            Go To Your Personal Dashboard!
           </button>
         </div>
       </div>

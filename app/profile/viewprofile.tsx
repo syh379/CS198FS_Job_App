@@ -83,11 +83,72 @@ export const ViewProfile: React.FC<userInfo>  = ({firstname, lastname, email, cu
           <div className="flex justify-center">
             <Link href="/updateprofile">
               <button className="bg-teal-500 text-black rounded-md font-medium py-2 px-4 mt-4 hover:bg-teal-700 transition-all">
-                Update Additional Information
+                Update Personal Profile
               </button>
               </Link>
           </div>
         </div>
+        <div className="ml-20 w-1/2">
+        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div className="inline-block w-full shadow-md rounded-lg overflow-hidden">
+              <table className="w-full leading-normal">
+                <tbody>
+                  {/* Firstname */}
+                  <tr>
+                    <td className="px-5 py-5 font-bold border-b border-gray-200 bg-white text-sm text-gray-900 whitespace-no-wrap">
+                      Jobs I applied to
+                    </td>
+                    <td className="px-5 py-5 font-bold border-b border-gray-200 bg-white text-sm text-gray-900 whitespace-no-wrap">
+                      Current Status
+                    </td>
+                  </tr>
+                  {/* Last Name */}
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Job 1
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      ...
+                    </td>
+                  </tr>
+                  {/* Emails */}
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Job 2
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      ...
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Job 3
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      ...
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Job 4
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      ...
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      Job 5
+                    </td>
+                    <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      ...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
       </div>
     </div>
   );
