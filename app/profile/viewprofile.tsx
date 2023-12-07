@@ -1,18 +1,25 @@
 
 
 import { useEffect, useState } from "react";
-import { PrismaClient, Employee } from "@prisma/client";
+import { PrismaClient, Employee, JobListing } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import Image from "next/image";
 
 import Link from "next/link";
 
-type userInfo = { 
-  firstname: string; lastname: string; email: string; customname: string; custombio: string;
+type UserInfo = { 
+  appliedJobs: JobListing[];
+  firstname: string;
+  lastname: string;
+  email: string;
+  customname: string;
+  custombio: string;
 };
 
-export const ViewProfile: React.FC<userInfo>  = ({firstname, lastname, email, customname, custombio}) => {
 
+export default function ViewProfile({appliedJobs, firstname, lastname, email, customname, custombio}: UserInfo) {
+
+  const jobs = appliedJobs;
 
   return (
     <div className="container mx-auto m-10">
@@ -103,6 +110,20 @@ export const ViewProfile: React.FC<userInfo>  = ({firstname, lastname, email, cu
                     </td>
                   </tr>
                   {/* Last Name */}
+                  {/* <div>
+                  {jobs?.map((job) => (
+                    <div key={job.id}>
+                                      <tr>
+                                      <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        Job 1
+                                      </td>
+                                      <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        ...
+                                      </td>
+                                    </tr>
+                                    </div>
+                  ))}
+                  </div> */}
                   <tr>
                     <td className="text-gray-900 whitespace-no-wrap px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       Job 1

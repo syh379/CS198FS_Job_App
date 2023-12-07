@@ -1,33 +1,17 @@
-// Admin panel
 
-"use client";
-import { useUser } from "@clerk/nextjs";
 import React from "react";
-import {ViewProfile} from "./viewprofile";
+import { prisma } from "@/lib/prisma";
+import CheckProfile from "./checkprofile";
 
-export default function Page({ params }: { params: { title: string } }) {
+export default async function page({ params }: { params: { title: string } }) {
+    const appliedJobs = await prisma.jobListing.findMany({
+        where: {
+          isApplied: true,
+        },
+      });
+    
 
-  console.log("redirected to profile page")
-
-  const { isLoaded, isSignedIn, user } = useUser();
-
-  console.log("sucessfully loaded user")
-  if (!isLoaded || !isSignedIn) {
-    return null;
-  }
-  let email = null;
-  email = user.emailAddresses.map((e) => (
-    e.emailAddress
-  ))
-  email = email[0]
   return (
-    <>
-    <ViewProfile 
-    firstname={user.firstName as string} 
-    lastname={user.lastName as string} 
-    email={email} 
-    customname={user.unsafeMetadata.customName? user.unsafeMetadata.customName.toString(): ""} 
-    custombio={user.unsafeMetadata.customBio? user.unsafeMetadata.customBio.toString(): ""}/>
-    </>
+    <CheckProfile appliedJobs={appliedJobs}/>
   );
 }
