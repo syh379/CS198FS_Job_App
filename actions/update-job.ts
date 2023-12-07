@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 export default async function updateJobs(data: FormData) {
   const jobId = data.get("jobId") as string;
 
+  console.log(jobId);
   const job = await prisma.jobListing.findFirst({
     where: {
       id: jobId,
@@ -21,5 +22,5 @@ export default async function updateJobs(data: FormData) {
       isApplied: !isApplied,
     },
   });
-  revalidatePath("/");
+  revalidatePath("/jobs");
 }

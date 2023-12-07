@@ -3,6 +3,10 @@ import Link from "next/link";
 import React from "react";
 import { currentUser } from "@clerk/nextjs";
 import {ApplyButton} from "@/components/applyButton";
+import SubmitButton from "@/components/submit-button";
+import toast from "react-hot-toast";
+import updateJob from "@/actions/update-job";
+import {ApplyJobButton} from "./apply";
 
 
 export default async function JobPage({ params }: { params: { id: string } }) {
@@ -12,6 +16,7 @@ export default async function JobPage({ params }: { params: { id: string } }) {
     },
   });
 
+  console.log(job?.id);
 
   return (
     <div className="w-4/5">
@@ -37,11 +42,11 @@ export default async function JobPage({ params }: { params: { id: string } }) {
           <div className="flex items-center gap-4 py-4">
             <Link
               href="/jobs"
-              className="py-2 px-5 bg-neutral-400 rounded-full"
+              className="py-2 px-5 bg-neutral-200 rounded-sm"
             >
               Back
             </Link>
-            <ApplyButton />
+            <ApplyJobButton job={job}/>
           </div>
         </div>
       </div>
